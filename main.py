@@ -8,7 +8,7 @@ def nl(s):
     return s+"\n"
 if not os.path.isdir("/app/output"):
     os.mkdir("/app/output")
-showtokens=False
+showtokens=True
 quiet=False
 div="-"*75
 f=open("/app/input.txt","r+")
