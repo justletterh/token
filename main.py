@@ -8,6 +8,7 @@ def nl(s):
     return s+"\n"
 if not os.path.isdir("/app/output"):
     os.mkdir("/app/output")
+showtokens=False
 quiet=False
 div="-"*75
 f=open("/app/input.txt","r+")
@@ -20,11 +21,17 @@ for t in tl:
     count=count+1
     print(f"loading token {count}...")
     if " --user" not in t:
-        cmd=f"python3 /app/bot.py {t}"
+        if showtokens:
+            cmd=f"python3 /app/bot.py {t}"
+        else:
+            cmd=f"python3 /app/bot.py {t} h"
         bl.append(procout(shell(cmd,shell=True,text=True).replace("\n","")))
     if " --user" in t:
         t=t.replace(" --user","")
-        cmd=f"python3 /app/user.py {t}"
+        if showtokens:
+            cmd=f"python3 /app/user.py {t}"
+        else:
+            cmd=f"python3 /app/user.py {t} h"
         ul.append(procout(shell(cmd,shell=True,text=True).replace("\n","")))
 print("processing data...")
 d={}
